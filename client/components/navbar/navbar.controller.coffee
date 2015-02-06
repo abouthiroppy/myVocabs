@@ -5,16 +5,12 @@ angular.module 'myVocabsApp'
   $scope.menu = [
     {
       title: 'Add'
-      link: '/'
+      link: '/addword'
     },
     {
       title: 'Word List'
       link: '/wordlist'
-    },
-    {
-      title: 'Credit'
-      link: '/credit'
-    },
+    }
   ]
   $scope.isCollapsed = true
   $scope.isLoggedIn = Auth.isLoggedIn
