@@ -3,8 +3,18 @@
 angular.module 'myVocabsApp'
 .controller 'NavbarCtrl', ($scope, $location, Auth) ->
   $scope.menu = [
-    title: 'Home'
-    link: '/'
+    {
+      title: 'Add'
+      link: '/'
+    },
+    {
+      title: 'Word List'
+      link: '/wordlist'
+    },
+    {
+      title: 'Credit'
+      link: '/credit'
+    },
   ]
   $scope.isCollapsed = true
   $scope.isLoggedIn = Auth.isLoggedIn
