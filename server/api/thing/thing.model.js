@@ -9,11 +9,14 @@ var mongoose = require('mongoose'),
 //   active: Boolean
 // });
 
+////////
+// priority 0 -> 1 -> 2(Max)
+
 var wordSchema = new Schema({
   word: String,
   date: String,
   roughly: String,
-  explain: String,
+  description: String,
   priority: Number,
   keywords: Array,
   accessCount: Number,
