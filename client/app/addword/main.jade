@@ -1,0 +1,25 @@
+div(ng-include='"components/navbar/navbar.html"')
+ 
+.container
+  form.thing-form
+    label Add new word
+    p.input-group
+      .col-sm-12
+        input.form-control(type='text', placeholder='new word', ng-model='newThing')
+        input.form-control(type='text', placeholder='broad strokes', ng-model='roughly')
+      //- textarea.form-control.textarea-form#inputText(type='text', placeholder='description', ng-model='marked.inputText')
+      span.input-group-btn
+      .col-sm-12(ng-controller="AddwordCtrl as marked")
+        .row
+          .col-sm-6
+            textarea.form-control.textarea-form#inputText(ng-model="marked.inputText" placeholder='description', auto-grow)
+          .col-sm-6
+            #outputText(ng-bind-html="marked.outputText")
+  button.btn.btn-primary(type='submit', ng-click='addThing()') Add New
+
+
+
+footer.footer
+  .container
+    p
+      | add-word
