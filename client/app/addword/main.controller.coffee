@@ -42,6 +42,11 @@ angular.module 'myVocabsApp'
       date: moment().format()
       accessCount: 0
       close: false
+    .success (json) ->
+      $('.form-control').val('');
+      alert 'success'
+    .error (json) ->
+      alert 'error'
 
 ###
 .directive 'autoGrow', ->
