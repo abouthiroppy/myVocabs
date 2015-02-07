@@ -6,7 +6,8 @@ angular.module 'myVocabsApp', [
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngTable'
 ]
 .config ($routeProvider, $locationProvider, $httpProvider) ->
   $routeProvider
