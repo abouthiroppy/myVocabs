@@ -6,7 +6,7 @@ angular.module 'myVocabsApp'
 .controller 'AddwordCtrl', ($scope, $http, socket) ->
   $scope.newThing = ''
   $scope.roughly = ''
-  $scope.priority = 0
+  $scope.priority = 'priority-low-color'
 
   # markdown
   markdown = this
@@ -32,12 +32,12 @@ angular.module 'myVocabsApp'
     markdown.outputText = marked current
 
   # priority
-  $scope.changePriority = (num) ->
-    $scope.priority = num
+  $scope.changePriority = (color) ->
+    $scope.priority = color
     $('.priority-group').removeClass('priority-select')
-    $('#priority-low').addClass('priority-select') if num is 0
-    $('#priority-middle').addClass('priority-select') if num is 1
-    $('#priority-high').addClass('priority-select') if num is 2
+    $('#priority-low').addClass('priority-select') if color is 'priority-low-color'
+    $('#priority-middle').addClass('priority-select') if color is 'priority-middle-color'
+    $('#priority-high').addClass('priority-select') if color is 'priority-high-color'
     return true
 
   # post to server
@@ -55,6 +55,7 @@ angular.module 'myVocabsApp'
       $('.form-control').val('');
       $('.priority-group').removeClass('priority-select')
       $('#priority-low').addClass('priority-select')
+      $scope.priority = 'priority-low-color'
       alert 'success'
     .error (json) ->
       alert 'error'
