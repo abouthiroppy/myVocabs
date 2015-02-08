@@ -11,11 +11,11 @@ div(ng-include='"components/navbar/navbar.html"')
         p priority
         .col-md-4
           .btn-group
-            button.btn.btn-primary.priority-group.priority-select#priority-low(type='button', ng-click='changePriority(0)')
+            button.btn.btn-primary.priority-group.priority-select#priority-low(type='button', ng-click='changePriority("priority-low-color")')
               i.glyphicon.glyphicon-align-left
-            button.btn.btn-primary.priority-group#priority-middle(type='button', ng-click='changePriority(1)')
+            button.btn.btn-primary.priority-group#priority-middle(type='button', ng-click='changePriority("priority-middle-color")')
               i.glyphicon.glyphicon-align-center
-            button.btn.btn-primary.priority-group#priority-high(type='button', ng-click='changePriority(2)')
+            button.btn.btn-primary.priority-group#priority-high(type='button', ng-click='changePriority("priority-high-color")')
               i.glyphicon.glyphicon-align-right
         p tag
       //- textarea.form-control.textarea-form#inputText(type='text', placeholder='description', ng-model='marked.inputText')
