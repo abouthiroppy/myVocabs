@@ -4,14 +4,13 @@ descriptionText = ''
 
 angular.module 'myVocabsApp'
 .controller 'AddwordCtrl', ($scope, $http, socket) ->
-  $scope.awesomeThings = []
   $scope.newThing = ''
   $scope.roughly = ''
   $scope.priority = 0
 
+  # markdown
   markdown = this
   this.inputText = ''
-
   marked.setOptions
     renderer: new marked.Renderer(),
     gfm: true,
@@ -32,7 +31,17 @@ angular.module 'myVocabsApp'
     descriptionText = current
     markdown.outputText = marked current
 
-  $scope.addThing = ->
+  # priority
+  $scope.changePriority = (num) ->
+    $scope.priority = num
+    $('.priority-group').removeClass('priority-select')
+    $('#priority-low').addClass('priority-select') if num is 0
+    $('#priority-middle').addClass('priority-select') if num is 1
+    $('#priority-high').addClass('priority-select') if num is 2
+    return true
+
+  # post to server
+  $scope.addWord = ->
     return if $scope.newThing is ''
     $http.post '/api/things',
       word: $scope.newThing
@@ -44,6 +53,8 @@ angular.module 'myVocabsApp'
       close: false
     .success (json) ->
       $('.form-control').val('');
+      $('.priority-group').removeClass('priority-select')
+      $('#priority-low').addClass('priority-select')
       alert 'success'
     .error (json) ->
       alert 'error'
