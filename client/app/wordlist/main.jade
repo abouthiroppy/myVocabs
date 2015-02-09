@@ -47,7 +47,7 @@ h1 {{sorting.date}}
                 button.close(type='button', ng-click='deleteThing(wordLine)') ×
               p {{wordLine.roughly}}
               p.priority-label(filter="{'priority': 'text'}") {{wordLine.priority}}
-
+              span.badge.badge-info(ng-if="wordLine.description !== ''") description
       //- ul.nav.nav-tabs.nav-stacked.col-md-12.col-lg-12.col-sm-12(ng-repeat='thing in wordData')
       //-   li
       //-     a(href="#")
