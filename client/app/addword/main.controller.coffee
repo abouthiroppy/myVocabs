@@ -1,12 +1,16 @@
 'use strict'
 
 descriptionText = ''
+selectTag = ''
 
 angular.module 'myVocabsApp'
 .controller 'AddwordCtrl', ($scope, $http, socket) ->
   $scope.newThing = ''
+  $scope.newTag = ''
   $scope.roughly = ''
   $scope.priority = 'priority-low-color'
+
+  noSelectTagText = '--------------'
 
   # markdown
   markdown = this
@@ -26,7 +30,6 @@ angular.module 'myVocabsApp'
       else
         return hljs.highlightAuto(code).value
 
-  # エラーでている
   $scope.$watch 'marked.inputText', (current, original) ->
     descriptionText = current
     markdown.outputText = marked current
@@ -46,11 +49,20 @@ angular.module 'myVocabsApp'
     $scope.tagData = tagData
     # tag selector
     setTimeout ->
-      $('.selecter').selecter()
+      $('.selecter').selecter
+        mobile: true
+        callback: selectCallback
     , 0
 
+  selectCallback = (value, index)->
+    selectTagText = $('span.selecter-selected').first().text()
+    if selectTagText is noSelectTagText 
+      selectTag = '' 
+    else
+      selectTag = selectTagText
+
   $scope.addTags = ->
-    return if $scope.newTag is '' or $scope.newTag is undefined
+    return if $scope.newTag is ''
     $http.post '/api/tags',
       name: $scope.newTag
       value: $scope.newTag
@@ -58,8 +70,11 @@ angular.module 'myVocabsApp'
       $scope.newTag = ''
       alert 'add tag'
       $scope.tagData.push obj
+      setTimeout ->
+        $(".selecter").selecter("update");
+      , 0
     .error ->
-      console.log 'error'
+      alert 'error'
 
   $scope.addWord = ->
     return if $scope.newThing is ''
@@ -71,6 +86,7 @@ angular.module 'myVocabsApp'
       date: moment().format()
       accessCount: 0
       close: false
+      tag: [selectTag]
     .success (json) ->
       $('.form-control').val('');
       $('.priority-group').removeClass('priority-select')
