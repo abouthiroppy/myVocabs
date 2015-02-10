@@ -31,6 +31,7 @@ angular.module 'myVocabsApp'
     descriptionText = current
     markdown.outputText = marked current
 
+
   # priority
   $scope.changePriority = (color) ->
     $scope.priority = color
@@ -40,7 +41,26 @@ angular.module 'myVocabsApp'
     $('#priority-high').addClass('priority-select') if color is 'priority-high-color'
     return true
 
-  # post to server
+
+  $http.get('/api/tags').success (tagData) ->
+    $scope.tagData = tagData
+    # tag selector
+    setTimeout ->
+      $('.selecter').selecter()
+    , 0
+
+  $scope.addTags = ->
+    return if $scope.newTag is '' or $scope.newTag is undefined
+    $http.post '/api/tags',
+      name: $scope.newTag
+      value: $scope.newTag
+    .success (obj) ->
+      $scope.newTag = ''
+      alert 'add tag'
+      $scope.tagData.push obj
+    .error ->
+      console.log 'error'
+
   $scope.addWord = ->
     return if $scope.newThing is ''
     $http.post '/api/things',
