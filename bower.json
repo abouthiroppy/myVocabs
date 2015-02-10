@@ -24,6 +24,7 @@
     "angular-scenario": ">=1.2.*",
     "moment": "~2.9.0",
     "bootflat": "*",
-    "ng-table": "~0.4.3"
+    "ng-table": "~0.4.3",
+    "Selecter": "~3.2.4"
   }
 }
