@@ -15,6 +15,9 @@ angular.module 'myVocabsApp'
     checkboxClass: 'icheckbox_flat'
     radioClass: 'iradio_flat'
   
+  # tag selector
+  $('.selecter').selecter()
+
   # sort function when select radio button of icheck
   $('input').on 'ifChanged', (e) ->
     if e.target.attributes[0].nodeValue is 'sort-new'
@@ -63,9 +66,11 @@ angular.module 'myVocabsApp'
         $defer.resolve $scope.users 
     )
 
-  $scope.deleteThing = (thing) ->
-    $http.delete '/api/things/' + thing._id
-
+  $scope.deleteWord = (thing) ->
+    $http.delete('/api/things/' + thing._id).success ->
+      setTimeout ->
+        $scope.tableParams.reload()
+      , 0
 
   $scope.$on '$destroy', ->
     socket.unsyncUpdates 'thing'
