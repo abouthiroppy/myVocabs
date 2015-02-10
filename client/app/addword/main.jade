@@ -23,7 +23,7 @@ div(ng-include='"components/navbar/navbar.html"')
           h4 tag
         .col-md-5
           .selecter.closed.cover(tabindex="0")
-            select.selecter-element(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1" ng-model='tagData' ng-options='t.name for t in tagData')
+            select.selecter-element#tag-selecter(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1" ng-model='selectTag' ng-options='t.value as t.name for t in tagData')
               option(value='') --------------
 
         .col-md-5
