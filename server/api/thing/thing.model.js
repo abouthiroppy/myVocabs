@@ -17,8 +17,8 @@ var wordSchema = new Schema({
   date: String,
   roughly: String,
   description: String,
-  priority: Number,
-  keywords: Array,
+  priority: String,
+  tag: Array,
   accessCount: Number,
   close: Boolean
 });
