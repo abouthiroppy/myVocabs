@@ -1,15 +1,16 @@
 div(ng-include='"components/navbar/navbar.html"')
- 
+
 .container
   form.thing-form
-    label Add new word
-    button.btn.btn-primary(type='submit', ng-click='addWord()') Add New
-    p.input-group
-      .col-sm-12
-        input.form-control(type='text', placeholder='new word', ng-model='newThing')
-        input.form-control(type='text', placeholder='broad strokes', ng-model='roughly')
-        p priority
+    .col-sm-12.input-group
+      button.btn.btn-primary(type='submit', ng-click='addWord()') Add New
+      input.form-control(type='text', placeholder='new word', ng-model='newThing')
+      input.form-control(type='text', placeholder='broad strokes', ng-model='roughly')
+    .col-sm-12
+      .col-md-4
         .col-md-4
+          h4 Priority
+        .col-md-8
           .btn-group
             button.btn.btn-primary.priority-group.priority-select#priority-low(type='button', ng-click='changePriority("priority-low-color")')
               i.glyphicon.glyphicon-align-left
@@ -17,8 +18,21 @@ div(ng-include='"components/navbar/navbar.html"')
               i.glyphicon.glyphicon-align-center
             button.btn.btn-primary.priority-group#priority-high(type='button', ng-click='changePriority("priority-high-color")')
               i.glyphicon.glyphicon-align-right
-        p tag
-      //- textarea.form-control.textarea-form#inputText(type='text', placeholder='description', ng-model='marked.inputText')
+      .col-md-8
+        .col-md-2
+          h4 tag
+        .col-md-5
+          .selecter.closed.cover(tabindex="0")
+            select.selecter-element(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1" ng-model='tagData' ng-options='t.name for t in tagData')
+              option(value='') --------------
+
+        .col-md-5
+          .input-group
+            span.input-group-addon +
+            input.form-control(ng-model='newTag')
+            span.input-group-btn
+              button.btn.btn-primary(type='submit', ng-click='addTags()') Add
+
       span.input-group-btn
       .col-sm-12(ng-controller='AddwordCtrl as marked')
         .row
