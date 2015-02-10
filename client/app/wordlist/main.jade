@@ -36,6 +36,21 @@ h1 {{sorting.date}}
               i.glyphicon.glyphicon-align-center
             button.btn.btn-primary.priority-group#priority-high(type='button', ng-click="findPriority('priority-high-color')")
               i.glyphicon.glyphicon-align-right
+          .selecter.closed.cover(tabindex="0")
+            select.selecter-element(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1")
+              option(value="1") All
+              option(value="2") Two
+              option(value="3") Three
+              option(value="1") All
+              option(value="2") Two
+              option(value="3") Three
+              option(value="1") All
+              option(value="2") Two
+              option(value="3") Three
+              option(value="1") All
+              option(value="2") Two
+              option(value="3") Three
+            span.selecter-selected
 
     .col-lg-12.list-container
       table.table.col-md-12.col-lg-12.col-sm-12(ng-table='tableParams')
@@ -44,18 +59,11 @@ h1 {{sorting.date}}
           td(class="{{wordLine.priority}}")
             a(href="#")
               h4(filter="{'word': 'text'}") {{wordLine.word}}
-                button.close(type='button', ng-click='deleteThing(wordLine)') ×
+                button.close(type='button', ng-click='deleteWord(wordLine)') ×
               p {{wordLine.roughly}}
               p.priority-label(filter="{'priority': 'text'}") {{wordLine.priority}}
               span.badge.badge-info(ng-if="wordLine.description !== ''") description
-      //- ul.nav.nav-tabs.nav-stacked.col-md-12.col-lg-12.col-sm-12(ng-repeat='thing in wordData')
-      //-   li
-      //-     a(href="#")
-      //-       h4(tooltip='{{thing.info}}')
-      //-         | {{thing.word}}
-      //-         button.close(type='button', ng-click='deleteThing(thing)') ×
-      //-       p 
-      //-         | {{thing.roughly}}
+              //- span.badge.badge-info(ng-if="wordLine.description !== ''") tags name
 
 footer.footer
   .container
