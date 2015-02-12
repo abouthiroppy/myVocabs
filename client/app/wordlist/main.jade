@@ -1,7 +1,5 @@
 div(ng-include='"components/navbar/navbar.html"')
 
- 
-h1 {{sorting.date}}
 .container
   .row
     .search-container
@@ -9,6 +7,12 @@ h1 {{sorting.date}}
         .form-search.search-only
           i.search-icon.glyphicon.glyphicon-search
           input.form-control.search-query(type='text' ng-model='filter.word')
+        .progress
+          .progress-bar.progress-bar-success(role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 50%")
+        .progress
+          .progress-bar.progress-bar-warning(role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 30%")
+        .progress
+          .progress-bar.progress-bar-danger(role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 70%")
       .col-lg-7.col-md-12.col-sm-12.condition-set
         .btn-group.col-lg-8.col-md-8.col-sm-8.col-xs-12
           .col-lg-5.col-md-5.col-sm-5.col-xs-5
@@ -37,33 +41,20 @@ h1 {{sorting.date}}
             button.btn.btn-primary.priority-group#priority-high(type='button', ng-click="findPriority('priority-high-color')")
               i.glyphicon.glyphicon-align-right
           .selecter.closed.cover(tabindex="0")
-            select.selecter-element(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1")
-              option(value="1") All
-              option(value="2") Two
-              option(value="3") Three
-              option(value="1") All
-              option(value="2") Two
-              option(value="3") Three
-              option(value="1") All
-              option(value="2") Two
-              option(value="3") Three
-              option(value="1") All
-              option(value="2") Two
-              option(value="3") Three
-            span.selecter-selected
+            select.selecter-element#tag-selecter(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1" ng-model='selectTag' ng-options='t.value as t.name for t in tagData')
+              option(value='') --------------
 
     .col-lg-12.list-container
-      table.table.col-md-12.col-lg-12.col-sm-12(ng-table='tableParams')
+      table.table(ng-table='tableParams')
         tr(ng-repeat='wordLine in $data')
-          //- td(data-title="'Name'")
-          td(class="{{wordLine.priority}}")
-            a(href="#")
+          td(class='{{wordLine.priority}}')
+            a(href= "{{'/' + wordLine._id}}")
               h4(filter="{'word': 'text'}") {{wordLine.word}}
                 button.close(type='button', ng-click='deleteWord(wordLine)') ×
               p {{wordLine.roughly}}
               p.priority-label(filter="{'priority': 'text'}") {{wordLine.priority}}
-              span.badge.badge-info(ng-if="wordLine.description !== ''") description
-              //- span.badge.badge-info(ng-if="wordLine.description !== ''") tags name
+              span.badge.badge-primary(ng-if="wordLine.description !== ''") Description
+              span.badge.badge-info(ng-if="wordLine.tag[0] !== ''") {{wordLine.tag[0]}}
 
 footer.footer
   .container
