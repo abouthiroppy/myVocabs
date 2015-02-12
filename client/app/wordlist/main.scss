@@ -72,3 +72,23 @@
 .selecter {
     min-width: 90%;
 }
+
+.progress {
+    margin-bottom: 5px !important;
+    height: 15px !important;
+}
+
+td a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #222;
+}
+
+tr:hover {
+    background-color: #ffcccc;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
