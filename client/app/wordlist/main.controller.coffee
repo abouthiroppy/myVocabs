@@ -6,17 +6,34 @@ angular.module 'myVocabsApp'
   $scope.filter = 
     word: ''
     priority: ''
+    tag: ''
+
   $scope.sort = 
     #word: ''  # asc and desc
     date: 'desc'
+
+  noSelectTagText = '--------------'
 
   # icheck setting
   $('input').iCheck
     checkboxClass: 'icheckbox_flat'
     radioClass: 'iradio_flat'
-  
-  # tag selector
-  $('.selecter').selecter()
+
+  $http.get('/api/tags').success (tagData) ->
+    $scope.tagData = tagData
+    # tag selector
+    setTimeout ->
+      $('.selecter').selecter
+        mobile: true
+        callback: selectCallback
+    , 0
+
+  selectCallback = (value, index)->
+    selectTagText = $('span.selecter-selected').first().text()
+    if selectTagText is noSelectTagText 
+      selectTagText = '' 
+    $scope.filter.tag = selectTagText
+    $scope.tableParams.reload()
 
   # sort function when select radio button of icheck
   $('input').on 'ifChanged', (e) ->
