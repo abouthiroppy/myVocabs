@@ -71,7 +71,7 @@ angular.module 'myVocabsApp'
       alert 'add tag'
       $scope.tagData.push obj
       setTimeout ->
-        $(".selecter").selecter("update");
+        $('.selecter').selecter('update');
       , 0
     .error ->
       alert 'error'
@@ -83,7 +83,7 @@ angular.module 'myVocabsApp'
       roughly: $scope.roughly
       description: descriptionText
       priority: $scope.priority
-      date: moment().format()
+      date: moment().format().split('T')[0] + ' ' + moment().format().split('T')[1].split('+')[0]
       accessCount: 0
       close: false
       tag: [selectTag]
