@@ -1,0 +1,25 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+ 
+.container
+  .row
+    .col-sm-12
+      h1.word-title {{wordData.word}}
+      button click
+    .col-sm-12.priority-color-border
+    .col-sm-12
+      h4 {{wordData.roughly}}
+      p Created on {{wordData.date}}
+
+    //- a#username(href='#') superuser
+    
+    .col-sm-12(ng-controller='WordpageCtrl as marked')
+      //- .col-sm-6
+      //-   textarea.form-control.textarea-form#inputText(ng-model='marked.inputText' placeholder='description', auto-grow)
+      .col-sm-12#description-content
+        #outputText(ng-bind-html='marked.outputText')
+
+footer.footer
+  .container
+    p
+      | page-list
