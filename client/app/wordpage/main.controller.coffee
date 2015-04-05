@@ -8,17 +8,14 @@ angular.module 'myVocabsApp'
 
   # $.fn.editable.defaults.mode = 'inline'
 
-  ###
-  $('#username').editable
-    type: 'text'
-    #pk   : 1
-    url   : '/post'
-  ###
-
   # icheck setting
   $('input').iCheck
     checkboxClass: 'icheckbox_flat'
     radioClass: 'iradio_flat'
+
+  # change button
+  $scope.editWord = ->
+    $location.path '/' + $location.$$path.split('/')[1] + '/edit'
 
   # markdown
   markdown = this
@@ -37,12 +34,6 @@ angular.module 'myVocabsApp'
         return hljs.highlight(lang, code).value
       else
         return hljs.highlightAuto(code).value
-
-  ###  
-  $scope.$watch 'marked.inputText', (current, original) ->
-    descriptionText = current
-    markdown.outputText = marked current
-  ###
 
   $http.get('/api/things/' + $location.$$path.split('/')[1]).success (wordData) ->
     console.log wordData
