@@ -39,7 +39,8 @@ angular.module 'myVocabsApp'
     console.log wordData
     $scope.editWord = wordData.word
     $scope.roughly = wordData.roughly
-    inputText = wordData.description
+    $scope.marked.inputText = wordData.description
+    $scope.changePriority wordData.priority
 
   # get tag data
   $http.get('/api/tags').success (tagData) ->
@@ -59,7 +60,6 @@ angular.module 'myVocabsApp'
     $('#priority-middle').addClass('priority-select') if color is 'priority-middle-color'
     $('#priority-high').addClass('priority-select') if color is 'priority-high-color'
     return true
-
 
   selectCallback = (value, index)->
     selectTagText = $('span.selecter-selected').first().text()
@@ -85,7 +85,7 @@ angular.module 'myVocabsApp'
 
   $scope.addWord = ->
     return if $scope.editWord is ''
-    $http.post '/api/things',
+    $http.put '/api/things/'+ $location.$$path.split('/')[1],
       word: $scope.editWord
       roughly: $scope.roughly
       description: descriptionText
@@ -93,12 +93,8 @@ angular.module 'myVocabsApp'
       date: moment().format().split('T')[0] + ' ' + moment().format().split('T')[1].split('+')[0]
       accessCount: 0
       close: false
-      tag: [selectTag]
+      # tag: [selectTag]
     .success (json) ->
-      $('.form-control').val('');
-      $('.priority-group').removeClass('priority-select')
-      $('#priority-low').addClass('priority-select')
-      $scope.priority = 'priority-low-color'
-      alert 'success'
+      $location.path('/'+$location.$$path.split('/')[1])
     .error (json) ->
       alert 'error'
