@@ -34,7 +34,7 @@ div(ng-include='"components/navbar/navbar.html"')
               button.btn.btn-primary(type='submit', ng-click='addTags()') Add
 
       span.input-group-btn
-      .col-sm-12(ng-controller='AddwordCtrl as marked')
+      .col-sm-12(ng-controller='EditWordCtrl as marked')
         .row
           .col-sm-6
             textarea.form-control.textarea-form#inputText(ng-model='marked.inputText' placeholder='description', auto-grow)
