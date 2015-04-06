@@ -8,8 +8,8 @@ angular.module 'myVocabsApp'
   $scope.editWord = ''
   $scope.newTag = ''
   $scope.roughly = ''
-  $scope.priority = 'priority-low-color'
 
+  wordId = $location.$$path.split('/')[1]
   noSelectTagText = '--------------'
 
   # markdown
@@ -35,8 +35,7 @@ angular.module 'myVocabsApp'
     markdown.outputText = marked current
 
   # get word data
-  $http.get('/api/things/' + $location.$$path.split('/')[1]).success (wordData) ->
-    console.log wordData
+  $http.get('/api/things/' + wordId).success (wordData) ->
     $scope.editWord = wordData.word
     $scope.roughly = wordData.roughly
     $scope.marked.inputText = wordData.description
@@ -68,24 +67,9 @@ angular.module 'myVocabsApp'
     else
       selectTag = selectTagText
 
-  $scope.addTags = ->
-    return if $scope.newTag is ''
-    $http.post '/api/tags',
-      name: $scope.newTag
-      value: $scope.newTag
-    .success (obj) ->
-      $scope.newTag = ''
-      alert 'add tag'
-      $scope.tagData.push obj
-      setTimeout ->
-        $('.selecter').selecter('update');
-      , 0
-    .error ->
-      alert 'error'
-
-  $scope.addWord = ->
+  $scope.changeWord = ->
     return if $scope.editWord is ''
-    $http.put '/api/things/'+ $location.$$path.split('/')[1],
+    $http.put '/api/things/'+ wordId,
       word: $scope.editWord
       roughly: $scope.roughly
       description: descriptionText
@@ -93,8 +77,8 @@ angular.module 'myVocabsApp'
       date: moment().format().split('T')[0] + ' ' + moment().format().split('T')[1].split('+')[0]
       accessCount: 0
       close: false
-      # tag: [selectTag]
+      tag: [selectTag]
     .success (json) ->
-      $location.path('/'+$location.$$path.split('/')[1])
+      $location.path('/' + wordId)
     .error (json) ->
       alert 'error'
