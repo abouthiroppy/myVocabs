@@ -1,46 +1,39 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container
-  form.thing-form
-    .col-sm-12.input-group
+  form.thing-form.col-sm-12
+    input-group
       button.btn.btn-primary(type='submit', ng-click='addWord()') Add New
       input.form-control(type='text', placeholder='new word', ng-model='newThing')
       input.form-control(type='text', placeholder='broad strokes', ng-model='roughly')
-    .col-sm-12
-      .col-md-4
-        .col-md-4
-          h4 Priority
-        .col-md-8
-          .btn-group
-            button.btn.btn-primary.priority-group.priority-select#priority-low(type='button', ng-click='changePriority("priority-low-color")')
-              i.glyphicon.glyphicon-align-left
-            button.btn.btn-primary.priority-group#priority-middle(type='button', ng-click='changePriority("priority-middle-color")')
-              i.glyphicon.glyphicon-align-center
-            button.btn.btn-primary.priority-group#priority-high(type='button', ng-click='changePriority("priority-high-color")')
-              i.glyphicon.glyphicon-align-right
-      .col-md-8
-        .col-md-2
-          h4 tag
-        .col-md-5
-          .selecter.closed.cover(tabindex="0")
-            select.selecter-element#tag-selecter(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1" ng-model='selectTag' ng-options='t.value as t.name for t in tagData')
-              option(value='') --------------
+  .col-sm-12
+    .col-md-2
+      .btn-group
+        button.btn.btn-primary.priority-group.priority-select#priority-low(type='button', ng-click='changePriority("priority-low-color")')
+          i.glyphicon.glyphicon-align-left
+        button.btn.btn-primary.priority-group#priority-middle(type='button', ng-click='changePriority("priority-middle-color")')
+          i.glyphicon.glyphicon-align-center
+        button.btn.btn-primary.priority-group#priority-high(type='button', ng-click='changePriority("priority-high-color")')
+          i.glyphicon.glyphicon-align-right
+    .col-md-5
+      .selecter.closed.cover(tabindex="0").tag-form
+        select.selecter-element#tag-selecter(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1" ng-model='selectTag' ng-options='t.value as t.name for t in tagData')
+          option(value='') --------------
 
-        .col-md-5
-          .input-group
-            span.input-group-addon +
-            input.form-control(ng-model='newTag')
-            span.input-group-btn
-              button.btn.btn-primary(type='submit', ng-click='addTags()') Add
+    .col-md-5
+      .input-group.tag-form
+        span.input-group-addon +
+        input.form-control(ng-model='newTag')
+        span.input-group-btn
+          button.btn.btn-primary(type='submit', ng-click='addTags()') Add
 
-      span.input-group-btn
-      .col-sm-12(ng-controller='AddwordCtrl as marked')
-        .row
-          .col-sm-6
-            textarea.form-control.textarea-form#inputText(ng-model='marked.inputText' placeholder='description', auto-grow)
-          .col-sm-6
-            #outputText(ng-bind-html='marked.outputText')
-  //- button.btn.btn-primary(type='submit', ng-click='addThing()') Add New
+    span.input-group-btn
+    .col-sm-12(ng-controller='AddwordCtrl as marked')
+      .row
+        .col-sm-6
+          textarea.form-control.textarea-form#inputText(ng-model='marked.inputText' placeholder='description', auto-grow)
+        .col-sm-6
+          #outputText(ng-bind-html='marked.outputText')
 
 
 
