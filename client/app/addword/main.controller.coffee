@@ -91,6 +91,7 @@ angular.module 'myVocabsApp'
       $('.form-control').val('');
       $('.priority-group').removeClass('priority-select')
       $('#priority-low').addClass('priority-select')
+      $('#outputText').empty()
       $scope.priority = 'priority-low-color'
       alert 'success'
     .error (json) ->
