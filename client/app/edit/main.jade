@@ -3,7 +3,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   form.thing-form
     .col-sm-12.input-group
-      button.btn.btn-primary(type='submit', ng-click='addWord()') Change
+      button.btn.btn-primary(type='submit', ng-click='changeWord()') Change
       input.form-control(type='text', placeholder='new word', ng-model='editWord')
       input.form-control(type='text', placeholder='broad strokes', ng-model='roughly')
     .col-sm-12
@@ -25,13 +25,6 @@ div(ng-include='"components/navbar/navbar.html"')
           .selecter.closed.cover(tabindex="0")
             select.selecter-element#tag-selecter(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1" ng-model='selectTag' ng-options='t.value as t.name for t in tagData')
               option(value='') --------------
-
-        .col-md-5
-          .input-group
-            span.input-group-addon +
-            input.form-control(ng-model='newTag')
-            span.input-group-btn
-              button.btn.btn-primary(type='submit', ng-click='addTags()') Add
 
       span.input-group-btn
       .col-sm-12(ng-controller='EditWordCtrl as marked')
