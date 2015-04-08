@@ -36,21 +36,10 @@ angular.module 'myVocabsApp'
         return hljs.highlightAuto(code).value
 
   $http.get('/api/things/' + $location.$$path.split('/')[1]).success (wordData) ->
-    console.log wordData
     $('.priority-color-border').addClass wordData.priority
     $scope.wordData = wordData
     socket.syncUpdates 'thing', $scope.wordData
     markdown.outputText = marked wordData.description
-  ###
-  $http.post('/api/tags').success (tagData) ->
-    $scope.tagData = tagData
-    # tag selector
-    setTimeout ->
-      $('.selecter').selecter
-        mobile: true
-        callback: selectCallback
-    , 0
-  ###
 
   selectCallback = (value, index)->
     selectTagText = $('span.selecter-selected').first().text()
