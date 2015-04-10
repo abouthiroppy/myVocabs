@@ -1,12 +1,12 @@
 'use strict'
 
-describe 'Controller: MainCtrl', ->
+describe 'Controller: WordlistCtrl', ->
 
   # load the controller's module
   beforeEach module 'myVocabsApp' 
   beforeEach module 'socketMock' 
 
-  MainCtrl = undefined
+  WordlistCtrl = undefined
   scope = undefined
   $httpBackend = undefined
 
@@ -20,7 +20,7 @@ describe 'Controller: MainCtrl', ->
       'Express'
     ]
     scope = $rootScope.$new()
-    MainCtrl = $controller 'MainCtrl',
+    MainCtrl = $controller 'WordlistCtrl',
       $scope: scope
 
   it 'should attach a list of things to the scope', ->
