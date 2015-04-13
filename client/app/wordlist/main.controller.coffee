@@ -19,6 +19,7 @@ angular.module 'myVocabsApp'
     checkboxClass: 'icheckbox_flat'
     radioClass: 'iradio_flat'
 
+  # getting tags
   $http.get('/api/tags').success (tagData) ->
     $scope.tagData = tagData
     # tag selector
@@ -65,8 +66,26 @@ angular.module 'myVocabsApp'
     $('#priority-high').addClass('priority-select') if priorityClass is 'priority-high-color'
     return true
 
+  # getting wordData
   $http.get('/api/things').success (wordData) ->
     $scope.wordData = wordData
+
+    # calculate distribution of word priority
+    priorityCount = 
+      'low':0
+      'middle':0
+      'high':0
+    for word in wordData
+      priorityCount['low']++ if word.priority is 'priority-low-color'
+      priorityCount['middle']++ if word.priority is 'priority-middle-color'
+      priorityCount['high']++ if word.priority is 'priority-high-color'
+    if wordData.length isnt 0
+      setTimeout () ->
+        $('.progress-bar-success').css('width', (priorityCount['low'] / wordData.length) * 100 + '%')
+        $('.progress-bar-warning').css('width', (priorityCount['middle'] / wordData.length) * 100 + '%')
+        $('.progress-bar-danger').css('width', (priorityCount['high'] / wordData.length) * 100 + '%')
+      , 100
+
     socket.syncUpdates 'thing', $scope.wordData
     $scope.tableParams = new ngTableParams(
       page: 1
