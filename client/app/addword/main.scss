@@ -1,18 +1,37 @@
-.footer {
-    text-align: center;
-    padding: 30px 0;
-    margin-top: 70px;
-    border-top: 1px solid #E5E5E5;
+div.selecter {
+	margin: 0 0 10px 0;
 }
 
-.textarea-form {
-    height: 350px !important;
+// markdown
+
+// input
+#inputText {
+    height: 350px;
 }
 
-.priority-select {
-    background: #f6bb42 !important;
-    border-color: #f6bb42 !important;
+// result
+#outputText {
+	height: 350px;
+	overflow: auto;
 }
+
+
+// priority-select-box
+
+.btn-group > button.priority-select {
+    background: #f6bb42;
+    border-color: #f6bb42;
+}
+
+.btn-group .btn-primary:first-child {
+	border-left-color: transparent !important;
+}
+
+.btn-group .btn-primary:last-child {
+	border-right-color: transparent !important;
+}
+
+
 
 input {
     background-color: #b2d4dc !important;
