@@ -40,7 +40,7 @@ div(ng-include='"components/navbar/navbar.html"')
               i.glyphicon.glyphicon-align-center
             button.btn.btn-primary.priority-group#priority-high(type='button', ng-click="findPriority('priority-high-color')")
               i.glyphicon.glyphicon-align-right
-          .selecter.closed.cover(tabindex="0")
+          #wordlist-selecter.selecter.closed.cover(tabindex="0")
             select.selecter-element#tag-selecter(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1" ng-model='selectTag' ng-options='t.value as t.name for t in tagData')
               option(value='') --------------
 
