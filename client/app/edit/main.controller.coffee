@@ -77,7 +77,7 @@ angular.module 'myVocabsApp'
       date: moment().format().split('T')[0] + ' ' + moment().format().split('T')[1].split('+')[0]
       accessCount: 0
       close: false
-      tag: [selectTag]
+      tag: selectTag
     .success (json) ->
       $location.path('/' + wordId)
     .error (json) ->
