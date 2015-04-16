@@ -9,13 +9,9 @@ div(ng-include='"components/navbar/navbar.html"')
     .col-sm-12.priority-color-border
     .col-sm-12
       h4 {{wordData.roughly}}
-      p Created on {{wordData.date}}
-
-    //- a#username(href='#') superuser
-    
+      span.badge.badge-info(ng-if="wordData.tag[0] !== ''") {{wordData.tag[0]}}
+      span  Created on {{wordData.date}} 
     .col-sm-12(ng-controller='WordpageCtrl as marked')
-      //- .col-sm-6
-      //-   textarea.form-control.textarea-form#inputText(ng-model='marked.inputText' placeholder='description', auto-grow)
       .col-sm-12#description-content(ng-bind-html='marked.outputText')
 
 footer.footer
