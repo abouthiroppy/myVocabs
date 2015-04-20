@@ -1,12 +1,12 @@
 'use strict'
 
 angular.module 'myVocabsApp'
-.controller 'WordlistCtrl', ($scope, $http, socket, ngTableParams, $filter) ->
-  $scope.wordData  = []
-  $scope.filter    = 
-    word: ''
+.controller 'WordlistCtrl', ($scope, $http, ngTableParams, $filter) ->
+  $scope.wordData = []
+  $scope.filter = 
+    word    : ''
     priority: ''
-    tag: ''
+    tag     : ''
 
   $scope.sort      = 
     #word: ''  # asc and desc
@@ -95,11 +95,11 @@ angular.module 'myVocabsApp'
         $('.progress-bar-danger').css('width', (priorityCount['high'] / wordData.length) * 100 + '%')
       , 100
 
-    socket.syncUpdates 'word', $scope.wordData
+    # socket.syncUpdates 'word', $scope.wordData
     $scope.tableParams = new ngTableParams(
-      page: 1
-      count: 10
-      filter: $scope.filter
+      page   : 1
+      count  : 10
+      filter : $scope.filter
       sorting: $scope.sort
     ,
       total: wordData.length
@@ -118,4 +118,4 @@ angular.module 'myVocabsApp'
       , 0
 
   $scope.$on '$destroy', ->
-    socket.unsyncUpdates 'word'
+    # socket.unsyncUpdates 'word'

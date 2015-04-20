@@ -16,4 +16,4 @@ var wordSchema = new Schema({
   close: Boolean
 });
 
-module.exports = mongoose.model('thing', wordSchema);
+module.exports = mongoose.model('Thing', wordSchema);
