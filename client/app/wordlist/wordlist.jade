@@ -42,7 +42,7 @@ div(ng-include='"components/navbar/navbar.html"')
               i.glyphicon.glyphicon-align-right
           #wordlist-selecter.selecter.closed.cover(tabindex="0")
             select.selecter-element#tag-selecter(name="selecter_basic selecter-element" data-selector-option='{"cover":"true"}' tabindex="-1" ng-model='selectTag' ng-options='t.value as t.name for t in tagData')
-              option(value='') --------------
+              option(value='') ALL
 
     .col-lg-12.list-container
       table.table(ng-table='tableParams')
@@ -50,7 +50,6 @@ div(ng-include='"components/navbar/navbar.html"')
           td(class='{{wordLine.priority}}')
             a(href= "{{'/' + wordLine._id}}")
               h4(filter="{'word': 'text'}") {{wordLine.word}}
-                button.close(type='button', ng-click='deleteWord(wordLine)') ×
               p {{wordLine.roughly}}
               p.priority-label(filter="{'priority': 'text'}") {{wordLine.priority}}
               span.badge.badge-primary(ng-if="wordLine.description !== ''") Description
