@@ -4,13 +4,13 @@ descriptionText = ''
 selectTag = ''
 
 angular.module 'myVocabsApp'
-.controller 'AddwordCtrl', ($scope, $http, socket) ->
-  $scope.newword = ''
-  $scope.newTag = ''
-  $scope.roughly = ''
-  $scope.priority = 'priority-low-color'
-
-  noSelectTagText = '--------------'
+.controller 'AddwordCtrl', ($scope, $http, socket, Auth) ->
+  $scope.newword    = ''
+  $scope.newTag     = ''
+  $scope.roughly    = ''
+  $scope.priority   = 'priority-low-color'
+  $scope.isLoggedIn = Auth.isLoggedIn
+  noSelectTagText   = '--------------'
 
   # markdown
   markdown = this
@@ -77,7 +77,7 @@ angular.module 'myVocabsApp'
       alert 'error'
 
   $scope.addWord = ->
-    return if $scope.newWord is ''
+    return if $scope.newWord is '' && isLoggedIn()
     $http.post '/api/words',
       word: $scope.newWord
       roughly: $scope.roughly
