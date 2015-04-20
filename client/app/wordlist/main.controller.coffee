@@ -67,9 +67,8 @@ angular.module 'myVocabsApp'
     return true
 
   # getting wordData
-  $http.get('/api/things').success (wordData) ->
+  $http.get('/api/words').success (wordData) ->
     $scope.wordData = wordData
-
     # calculate distribution of word priority
     priorityCount = 
       'low':0
@@ -86,7 +85,7 @@ angular.module 'myVocabsApp'
         $('.progress-bar-danger').css('width', (priorityCount['high'] / wordData.length) * 100 + '%')
       , 100
 
-    socket.syncUpdates 'thing', $scope.wordData
+    socket.syncUpdates 'word', $scope.wordData
     $scope.tableParams = new ngTableParams(
       page: 1
       count: 10
@@ -102,11 +101,11 @@ angular.module 'myVocabsApp'
         $defer.resolve $scope.users 
     )
 
-  $scope.deleteWord = (thing) ->
-    $http.delete('/api/things/' + thing._id).success ->
+  $scope.deleteWord = (word) ->
+    $http.delete('/api/words/' + word._id).success ->
       setTimeout ->
         $scope.tableParams.reload()
       , 0
 
   $scope.$on '$destroy', ->
-    socket.unsyncUpdates 'thing'
+    socket.unsyncUpdates 'word'

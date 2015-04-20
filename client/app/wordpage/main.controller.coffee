@@ -36,10 +36,10 @@ angular.module 'myVocabsApp'
       else
         return hljs.highlightAuto(code).value
 
-  $http.get('/api/things/' + $location.$$path.split('/')[1]).success (wordData) ->
+  $http.get('/api/words/' + $location.$$path.split('/')[1]).success (wordData) ->
     $('.priority-color-border').addClass wordData.priority
     $scope.wordData = wordData
-    socket.syncUpdates 'thing', $scope.wordData
+    socket.syncUpdates 'word', $scope.wordData
     markdown.outputText = marked wordData.description
 
   selectCallback = (value, index)->
@@ -50,8 +50,8 @@ angular.module 'myVocabsApp'
     $scope.tableParams.reload()
 
 
-  $scope.deleteWord = (thing) ->
-    $http.delete('/api/things/' + thing._id).success ->
+  $scope.deleteWord = (word) ->
+    $http.delete('/api/words/' + word._id).success ->
 
   $scope.$on '$destroy', ->
-    socket.unsyncUpdates 'thing'
+    socket.unsyncUpdates 'word'

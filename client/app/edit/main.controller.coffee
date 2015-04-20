@@ -35,7 +35,7 @@ angular.module 'myVocabsApp'
     markdown.outputText = marked current
 
   # get word data
-  $http.get('/api/things/' + wordId).success (wordData) ->
+  $http.get('/api/words/' + wordId).success (wordData) ->
     $scope.editWord = wordData.word
     $scope.roughly = wordData.roughly
     $scope.marked.inputText = wordData.description
@@ -69,7 +69,7 @@ angular.module 'myVocabsApp'
 
   $scope.changeWord = ->
     return if $scope.editWord is ''
-    $http.put '/api/things/'+ wordId,
+    $http.put '/api/words/'+ wordId,
       word: $scope.editWord
       roughly: $scope.roughly
       description: descriptionText

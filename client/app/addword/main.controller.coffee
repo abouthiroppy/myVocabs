@@ -5,7 +5,7 @@ selectTag = ''
 
 angular.module 'myVocabsApp'
 .controller 'AddwordCtrl', ($scope, $http, socket) ->
-  $scope.newThing = ''
+  $scope.newword = ''
   $scope.newTag = ''
   $scope.roughly = ''
   $scope.priority = 'priority-low-color'
@@ -77,9 +77,9 @@ angular.module 'myVocabsApp'
       alert 'error'
 
   $scope.addWord = ->
-    return if $scope.newThing is ''
-    $http.post '/api/things',
-      word: $scope.newThing
+    return if $scope.newWord is ''
+    $http.post '/api/words',
+      word: $scope.newWord
       roughly: $scope.roughly
       description: descriptionText
       priority: $scope.priority
