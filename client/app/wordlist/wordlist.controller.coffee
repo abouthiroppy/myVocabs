@@ -2,17 +2,19 @@
 
 angular.module 'myVocabsApp'
 .controller 'WordlistCtrl', ($scope, $http, socket, ngTableParams, $filter) ->
-  $scope.wordData = []
-  $scope.filter = 
+  $scope.wordData  = []
+  $scope.filter    = 
     word: ''
     priority: ''
     tag: ''
 
-  $scope.sort = 
+  $scope.sort      = 
     #word: ''  # asc and desc
     date: 'desc'
 
-  noSelectTagText = '--------------'
+  allTagSelectText = 'ALL'
+  noSelectTagText  = '--------------'
+
 
   # icheck setting
   $('input').iCheck
@@ -21,7 +23,11 @@ angular.module 'myVocabsApp'
 
   # getting tags
   $http.get('/api/tags').success (tagData) ->
-    $scope.tagData = tagData
+    $scope.tagData = []
+    $scope.tagData.push 
+      name : noSelectTagText
+      value: noSelectTagText
+    $scope.tagData = $scope.tagData.concat tagData
     # tag selector
     setTimeout ->
       $('.selecter').selecter
@@ -31,8 +37,12 @@ angular.module 'myVocabsApp'
 
   selectCallback = (value, index)->
     selectTagText = $('span.selecter-selected').first().text()
-    if selectTagText is noSelectTagText 
+    # all tag
+    if selectTagText is allTagSelectText 
       selectTagText = '' 
+    # no tag
+    if selectTagText is noSelectTagText
+      selectTagText = 'none'
     $scope.filter.tag = selectTagText
     $scope.tableParams.reload()
 
@@ -60,10 +70,10 @@ angular.module 'myVocabsApp'
       $scope.filter.priority = priorityClass
 
     $('.priority-group').removeClass('priority-select')
-    $('#priority-none').addClass('priority-select') if priorityClass is 'priority-none-color'
-    $('#priority-low').addClass('priority-select') if priorityClass is 'priority-low-color'
+    $('#priority-none').addClass('priority-select')   if priorityClass is 'priority-none-color'
+    $('#priority-low').addClass('priority-select')    if priorityClass is 'priority-low-color'
     $('#priority-middle').addClass('priority-select') if priorityClass is 'priority-middle-color'
-    $('#priority-high').addClass('priority-select') if priorityClass is 'priority-high-color'
+    $('#priority-high').addClass('priority-select')   if priorityClass is 'priority-high-color'
     return true
 
   # getting wordData
@@ -71,13 +81,13 @@ angular.module 'myVocabsApp'
     $scope.wordData = wordData
     # calculate distribution of word priority
     priorityCount = 
-      'low':0
+      'low'   :0
       'middle':0
-      'high':0
+      'high'  :0
     for word in wordData
-      priorityCount['low']++ if word.priority is 'priority-low-color'
+      priorityCount['low']++    if word.priority is 'priority-low-color'
       priorityCount['middle']++ if word.priority is 'priority-middle-color'
-      priorityCount['high']++ if word.priority is 'priority-high-color'
+      priorityCount['high']++   if word.priority is 'priority-high-color'
     if wordData.length isnt 0
       setTimeout () ->
         $('.progress-bar-success').css('width', (priorityCount['low'] / wordData.length) * 100 + '%')
