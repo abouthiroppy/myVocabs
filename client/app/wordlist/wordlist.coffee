@@ -4,5 +4,5 @@ angular.module 'myVocabsApp'
 .config ($routeProvider) ->
   $routeProvider
   .when '/wordlist',
-    templateUrl: 'app/wordlist/main.html'
+    templateUrl: 'app/wordlist/wordlist.html'
     controller: 'WordlistCtrl'

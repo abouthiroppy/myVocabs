@@ -4,5 +4,5 @@ angular.module 'myVocabsApp'
 .config ($routeProvider) ->
   $routeProvider
   .when '/:id/edit',
-    templateUrl: 'app/edit/main.html'
+    templateUrl: 'app/edit/edit.html'
     controller: 'EditWordCtrl'

@@ -4,5 +4,5 @@ angular.module 'myVocabsApp'
 .config ($routeProvider) ->
   $routeProvider
   .when '/:id',
-    templateUrl: 'app/wordpage/main.html'
+    templateUrl: 'app/wordpage/wordpage.html'
     controller: 'WordpageCtrl'

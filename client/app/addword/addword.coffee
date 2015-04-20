@@ -4,5 +4,5 @@ angular.module 'myVocabsApp'
 .config ($routeProvider) ->
   $routeProvider
   .when '/addword',
-    templateUrl: 'app/addword/main.html'
+    templateUrl: 'app/addword/addword.html'
     controller: 'AddwordCtrl'
