@@ -1,10 +1,11 @@
 'use strict'
 
 angular.module 'myVocabsApp'
-.controller 'WordpageCtrl', ($scope, $http, socket, $location) ->
-  $scope.wordData = []
-
-  noSelectTagText = '--------------'
+.controller 'WordpageCtrl', ($scope, $http, socket, $location, Auth) ->
+  
+  $scope.wordData   = []
+  $scope.isLoggedIn = Auth.isLoggedIn
+  noSelectTagText   = '--------------'
 
   # $.fn.editable.defaults.mode = 'inline'
 
