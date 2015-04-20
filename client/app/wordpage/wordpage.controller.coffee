@@ -3,6 +3,7 @@
 angular.module 'myVocabsApp'
 .controller 'WordpageCtrl', ($scope, $http, socket, $location, Auth) ->
   
+  wordId            = $location.$$path.split('/')[1] 
   $scope.wordData   = []
   $scope.isLoggedIn = Auth.isLoggedIn
   noSelectTagText   = '--------------'
@@ -16,7 +17,7 @@ angular.module 'myVocabsApp'
 
   # change button
   $scope.editWord = ->
-    $location.path '/' + $location.$$path.split('/')[1] + '/edit'
+    $location.path '/' + wordId + '/edit'
 
   # markdown
   markdown = this
@@ -36,7 +37,7 @@ angular.module 'myVocabsApp'
       else
         return hljs.highlightAuto(code).value
 
-  $http.get('/api/words/' + $location.$$path.split('/')[1]).success (wordData) ->
+  $http.get('/api/words/' + wordId).success (wordData) ->
     $('.priority-color-border').addClass wordData.priority
     $scope.wordData = wordData
     socket.syncUpdates 'word', $scope.wordData
@@ -50,8 +51,10 @@ angular.module 'myVocabsApp'
     $scope.tableParams.reload()
 
 
-  $scope.deleteWord = (word) ->
-    $http.delete('/api/words/' + word._id).success ->
-
+  $scope.deleteWord = () ->
+    if confirm 'Are you sure?'
+      $http.delete('/api/words/' + wordId).success ->
+        $location.path '/wordlist'
+        
   $scope.$on '$destroy', ->
     socket.unsyncUpdates 'word'
