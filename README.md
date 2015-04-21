@@ -11,7 +11,7 @@
 - `mongoDB`
 - `nodejs`
 - `npm`
-
+- `pm2` or `forever`
 ---
 
 ### Setting
@@ -19,7 +19,10 @@
 $ git clone https://github.com/abouthiroppy/myVocabs
 $ npm install
 $ bower install
-$ grunt build
+$ grunt build  
+$ cd dist/server  
+_if you use pm2_
+$ NODE_ENV=production PORT=xxxx pm2 start app.js  
 ```
 ---
 
