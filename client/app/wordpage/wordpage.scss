@@ -62,10 +62,20 @@ h1.word-title {
 
 #description-content {
     border: 2px solid #ddd;
+    margin-top: 5px;
+    padding-top: 5px;
 }
 
 .priority-color-border {
     border: solid 1px;
     width: 60%;
     margin-left: 15px;
+}
+
+.change-button {
+    margin-bottom: 3px; 
+}
+
+.word-page-badge {
+    margin-top: 3px;    
 }

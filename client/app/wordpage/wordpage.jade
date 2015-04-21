@@ -5,11 +5,11 @@ div(ng-include='"components/navbar/navbar.html"')
   .row
     .col-sm-12
       h1.word-title {{wordData.word}}
-      button.btn.btn-primary(ng-click='editWord()' ng-show='isLoggedIn()') Change
+      button.btn.btn-primary.change-button(ng-click='editWord()' ng-show='isLoggedIn()') Change
       button.close(type='button', ng-click='deleteWord()' ng-show='isLoggedIn()') ×
     .col-sm-12.priority-color-border
     .col-sm-12
-      span.badge.badge-info(ng-if="wordData.tag[0] !== ''") {{wordData.tag[0]}}
+      span.badge.badge-info.word-page-badge(ng-if="wordData.tag[0] !== ''") {{wordData.tag[0]}}
     .col-sm-12
       h4 {{wordData.roughly}}
       span  Created on {{wordData.date}} 
