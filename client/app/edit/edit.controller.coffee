@@ -41,6 +41,7 @@ angular.module 'myVocabsApp'
     $scope.roughly          = wordData.roughly
     $scope.marked.inputText = wordData.description
     $scope.changePriority wordData.priority
+    selectTag = wordData.tag[0]
 
   # get tag data
   $http.get('/api/tags').success (tagData) ->
