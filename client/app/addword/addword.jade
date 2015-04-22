@@ -6,7 +6,7 @@ div(ng-include='"components/navbar/navbar.html"')
       form.word-form
         input-group
           button.btn.btn-primary(type='submit', ng-click='addWord()' ng-show='isLoggedIn()') Add New
-          input.form-control(type='text', placeholder='new word', ng-model='newWord')
+          input.form-control#new-word(type='text', placeholder='new word', ng-model='newWord')
           input.form-control(type='text', placeholder='broad strokes', ng-model='roughly')
     .col-sm-6
       .btn-group

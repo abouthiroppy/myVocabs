@@ -16,6 +16,9 @@ angular.module 'myVocabsApp'
   markdown       = this
   this.inputText = ''
 
+  # ready
+  $('#new-word').focus()
+
   marked.setOptions
     renderer: new marked.Renderer(),
     gfm         : true
