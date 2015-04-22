@@ -26,6 +26,7 @@
     "bootflat": "*",
     "ng-table": "~0.4.3",
     "Selecter": "~3.2.4",
-    "x-editable": "~1.5.1"
+    "x-editable": "~1.5.1",
+    "mousetrap": "~1.5.2"
   }
 }
