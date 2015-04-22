@@ -53,7 +53,7 @@ div(ng-include='"components/navbar/navbar.html"')
               p {{wordLine.roughly}}
               p.priority-label(filter="{'priority': 'text'}") {{wordLine.priority}}
               span.badge.badge-primary(ng-if="wordLine.description !== ''") Description
-              span.badge.badge-info(ng-if="wordLine.tag[0] !== ''") {{wordLine.tag[0]}}
+              span.badge.badge-info(ng-if="wordLine.tag[0] !== ('' || '<none>')") {{wordLine.tag[0]}}
 
 footer.footer
   .container

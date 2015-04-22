@@ -9,7 +9,7 @@ div(ng-include='"components/navbar/navbar.html"')
       button.close(type='button', ng-click='deleteWord()' ng-show='isLoggedIn()') ×
     .col-sm-12.priority-color-border
     .col-sm-12
-      span.badge.badge-info.word-page-badge(ng-if="wordData.tag[0] !== ''") {{wordData.tag[0]}}
+      span.badge.badge-info.word-page-badge(ng-if="wordData.tag[0] !== ('' || '<none>')") {{wordData.tag[0]}}
     .col-sm-12
       h4 {{wordData.roughly}}
       span  Created on {{wordData.date}} 

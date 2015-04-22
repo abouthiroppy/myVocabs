@@ -1,7 +1,7 @@
 'use strict'
 
 descriptionText = ''
-selectTag = ''
+selectTag       = '<none>'
 
 angular.module 'myVocabsApp'
 .controller 'AddwordCtrl', ($scope, $http, socket, Auth) ->
@@ -13,25 +13,26 @@ angular.module 'myVocabsApp'
   noSelectTagText   = '--------------'
 
   # markdown
-  markdown = this
+  markdown       = this
   this.inputText = ''
+
   marked.setOptions
     renderer: new marked.Renderer(),
-    gfm: true,
-    tables: true,
-    breaks: false,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    highlight: (code, lang) ->
+    gfm         : true
+    tables      : true
+    breaks      : false
+    pedantic    : false
+    sanitize    : false
+    smartLists  : true
+    smartypants : false
+    highlight   : (code, lang) ->
       if lang
         return hljs.highlight(lang, code).value
       else
         return hljs.highlightAuto(code).value
 
   $scope.$watch 'marked.inputText', (current, original) ->
-    descriptionText = current
+    descriptionText     = current
     markdown.outputText = marked current
 
 
@@ -39,9 +40,9 @@ angular.module 'myVocabsApp'
   $scope.changePriority = (color) ->
     $scope.priority = color
     $('.priority-group').removeClass('priority-select')
-    $('#priority-low').addClass('priority-select') if color is 'priority-low-color'
+    $('#priority-low').addClass('priority-select')    if color is 'priority-low-color'
     $('#priority-middle').addClass('priority-select') if color is 'priority-middle-color'
-    $('#priority-high').addClass('priority-select') if color is 'priority-high-color'
+    $('#priority-high').addClass('priority-select')   if color is 'priority-high-color'
     return true
 
 
@@ -57,7 +58,7 @@ angular.module 'myVocabsApp'
   selectCallback = (value, index)->
     selectTagText = $('span.selecter-selected').first().text()
     if selectTagText is noSelectTagText 
-      selectTag = '' 
+      selectTag = '<none>' 
     else
       selectTag = selectTagText
 

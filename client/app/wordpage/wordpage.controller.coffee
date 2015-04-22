@@ -24,14 +24,14 @@ angular.module 'myVocabsApp'
   this.inputText = ''
   marked.setOptions
     renderer: new marked.Renderer(),
-    gfm: true,
-    tables: true,
-    breaks: false,
-    pedantic: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    highlight: (code, lang) ->
+    gfm         : true
+    tables      : true
+    breaks      : false
+    pedantic    : false
+    sanitize    : false
+    smartLists  : true
+    smartypants : false
+    highlight   : (code, lang) ->
       if lang
         return hljs.highlight(lang, code).value
       else

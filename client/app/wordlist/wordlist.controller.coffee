@@ -3,10 +3,10 @@
 angular.module 'myVocabsApp'
 .controller 'WordlistCtrl', ($scope, $http, ngTableParams, $filter) ->
   $scope.wordData = []
-  $scope.filter = 
-    word    : ''
-    priority: ''
-    tag     : ''
+  $scope.filter   = 
+    word     : ''
+    priority : ''
+    tag      : ''
 
   $scope.sort      = 
     #word: ''  # asc and desc
@@ -18,21 +18,21 @@ angular.module 'myVocabsApp'
 
   # icheck setting
   $('input').iCheck
-    checkboxClass: 'icheckbox_flat'
-    radioClass: 'iradio_flat'
+    checkboxClass : 'icheckbox_flat'
+    radioClass    : 'iradio_flat'
 
   # getting tags
   $http.get('/api/tags').success (tagData) ->
     $scope.tagData = []
     $scope.tagData.push 
-      name : noSelectTagText
-      value: noSelectTagText
+      name  : noSelectTagText
+      value : noSelectTagText
     $scope.tagData = $scope.tagData.concat tagData
     # tag selector
     setTimeout ->
       $('.selecter').selecter
-        mobile: true
-        callback: selectCallback
+        mobile   : true
+        callback : selectCallback
     , 0
 
   selectCallback = (value, index)->
@@ -42,7 +42,7 @@ angular.module 'myVocabsApp'
       selectTagText = '' 
     # no tag
     if selectTagText is noSelectTagText
-      selectTagText = 'none'
+      selectTagText = '<none>'
     $scope.filter.tag = selectTagText
     $scope.tableParams.reload()
 
@@ -81,9 +81,9 @@ angular.module 'myVocabsApp'
     $scope.wordData = wordData
     # calculate distribution of word priority
     priorityCount = 
-      'low'   :0
-      'middle':0
-      'high'  :0
+      low    :0
+      middle :0
+      high   :0
     for word in wordData
       priorityCount['low']++    if word.priority is 'priority-low-color'
       priorityCount['middle']++ if word.priority is 'priority-middle-color'
@@ -97,13 +97,13 @@ angular.module 'myVocabsApp'
 
     # socket.syncUpdates 'word', $scope.wordData
     $scope.tableParams = new ngTableParams(
-      page   : 1
-      count  : 10
-      filter : $scope.filter
-      sorting: $scope.sort
+      page    : 1
+      count   : 10
+      filter  : $scope.filter
+      sorting : $scope.sort
     ,
-      total: wordData.length
-      getData: ($defer, params) ->
+      total   : wordData.length
+      getData : ($defer, params) ->
         filteredData = params.filter() && $filter('filter')(wordData, params.filter()) || wordData
         orderedData  = params.sorting() && $filter('orderBy')(filteredData, params.orderBy()) || wordData;
         $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count())
@@ -116,6 +116,3 @@ angular.module 'myVocabsApp'
       setTimeout ->
         $scope.tableParams.reload()
       , 0
-
-  $scope.$on '$destroy', ->
-    # socket.unsyncUpdates 'word'
