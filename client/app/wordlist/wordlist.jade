@@ -6,7 +6,7 @@ div(ng-include='"components/navbar/navbar.html"')
       .col-lg-5.col-md-12.col-sm-12.keyword-search
         .form-search.search-only
           i.search-icon.glyphicon.glyphicon-search
-          input.form-control.search-query(type='text' ng-model='filter.word')
+          input.form-control.search-query#word-find(type='text' ng-model='filter.word')
         .progress
           .progress-bar.progress-bar-success(role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100")
         .progress

@@ -46,6 +46,17 @@ angular.module 'myVocabsApp'
     $scope.filter.tag = selectTagText
     $scope.tableParams.reload()
 
+  # keyboard shortcut
+  # open and close tag-selecter
+  # Mousetrap.bind 'ctrl+k', () ->
+  #   $('.selecter-selected').click()
+  #   Mousetrap.bind 'up', () ->
+  #     $('.selecter-item[data-value=1]').focus()
+  
+  # focus to search-bar
+  Mousetrap.bind 'ctrl+f', () ->
+    $('#word-find').focus()
+
   # sort function when select radio button of icheck
   $('input').on 'ifChanged', (e) ->
     if e.target.attributes[0].nodeValue is 'sort-new'
