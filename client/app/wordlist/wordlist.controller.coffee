@@ -47,6 +47,7 @@ angular.module 'myVocabsApp'
     $scope.tableParams.reload()
 
   # keyboard shortcut
+  ########################################################
   # open and close tag-selecter
   # Mousetrap.bind 'ctrl+k', () ->
   #   $('.selecter-selected').click()
@@ -61,10 +62,14 @@ angular.module 'myVocabsApp'
       $('#word-find').focus()
 
   # clear of search-bar text
-  Mousetrap.bind 'ctrl+c', () ->
+  Mousetrap.bindGlobal 'ctrl+c', () ->
     $('#word-find').val('')
     $scope.filter.word = ''
     $scope.tableParams.reload()
+
+  # scroll
+  Mousetrap.bindGlobal 'j', () ->
+
 
   # sort function when select radio button of icheck
   $('input').on 'ifChanged', (e) ->
