@@ -54,8 +54,17 @@ angular.module 'myVocabsApp'
   #     $('.selecter-item[data-value=1]').focus()
   
   # focus to search-bar
-  Mousetrap.bind 'ctrl+f', () ->
-    $('#word-find').focus()
+  Mousetrap.bindGlobal 'ctrl+f', () ->
+    if $("#word-find").is(":focus")
+      $('#word-find').blur()
+    else
+      $('#word-find').focus()
+
+  # clear of search-bar text
+  Mousetrap.bind 'ctrl+c', () ->
+    $('#word-find').val('')
+    $scope.filter.word = ''
+    $scope.tableParams.reload()
 
   # sort function when select radio button of icheck
   $('input').on 'ifChanged', (e) ->
@@ -71,7 +80,7 @@ angular.module 'myVocabsApp'
     if e.target.attributes[0].nodeValue is 'sort-descending'
       delete $scope.sort.date if delete $scope.sort.date is undefined
       $scope.sort.word = 'desc'
-    $scope.tableParams.reload();
+    $scope.tableParams.reload()
 
   # select priority for finding
   $scope.findPriority = (priorityClass) ->
