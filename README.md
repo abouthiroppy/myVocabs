@@ -38,9 +38,11 @@ $ NODE_ENV=production PORT=xxxx pm2 start app.js
 ## Library
 - generator-angular-fullstack
 - bootflat
+- moment
 - ng-table
 - Selecter
 - marked
+- mousetrap
 
 ## License
 MIT
