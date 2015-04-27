@@ -68,7 +68,7 @@ angular.module 'myVocabsApp'
     $scope.tableParams.reload()
 
   # scroll
-  Mousetrap.bindGlobal 'j', () ->
+  # Mousetrap.bindGlobal 'j', () ->
 
 
   # sort function when select radio button of icheck
@@ -106,9 +106,9 @@ angular.module 'myVocabsApp'
     $scope.wordData = wordData
     # calculate distribution of word priority
     priorityCount = 
-      low    :0
-      middle :0
-      high   :0
+      low    : 0
+      middle : 0
+      high   : 0
     for word in wordData
       priorityCount['low']++    if word.priority is 'priority-low-color'
       priorityCount['middle']++ if word.priority is 'priority-middle-color'
