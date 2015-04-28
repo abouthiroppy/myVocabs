@@ -46,17 +46,21 @@ angular.module 'myVocabsApp'
     $scope.filter.tag = selectTagText
     $scope.tableParams.reload()
 
+  # setInterval () ->
+  #   console.log $(".selecter-item").is(":focus")
+  # , 1000
+
   # keyboard shortcut
   ########################################################
   # open and close tag-selecter
-  # Mousetrap.bind 'ctrl+k', () ->
-  #   $('.selecter-selected').click()
-  #   Mousetrap.bind 'up', () ->
-  #     $('.selecter-item[data-value=1]').focus()
+  Mousetrap.bind 'ctrl+k', () ->
+    $('.selecter-selected').click()
+    Mousetrap.bind 'up', () ->
+      $('.selecter-item[data-value=1]').focus()
   
   # focus to search-bar
   Mousetrap.bindGlobal 'ctrl+f', () ->
-    if $("#word-find").is(":focus")
+    if $('#word-find').is(':focus')
       $('#word-find').blur()
     else
       $('#word-find').focus()
@@ -66,9 +70,6 @@ angular.module 'myVocabsApp'
     $('#word-find').val('')
     $scope.filter.word = ''
     $scope.tableParams.reload()
-
-  # scroll
-  # Mousetrap.bindGlobal 'j', () ->
 
 
   # sort function when select radio button of icheck
