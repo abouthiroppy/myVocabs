@@ -15,7 +15,6 @@ angular.module 'myVocabsApp'
   allTagSelectText = 'ALL'
   noSelectTagText  = '--------------'
 
-
   # icheck setting
   $('input').iCheck
     checkboxClass : 'icheckbox_flat'
@@ -71,6 +70,9 @@ angular.module 'myVocabsApp'
     $scope.filter.word = ''
     $scope.tableParams.reload()
 
+  Mousetrap.bind 'j', () ->
+    console.log('aaa')
+  , 'down'
 
   # sort function when select radio button of icheck
   $('input').on 'ifChanged', (e) ->

@@ -66,6 +66,10 @@ tr:hover {
     background-color: #ffcccc;
 }
 
+tr > th {
+    display: none;
+}
+
 a:hover {
     text-decoration: none !important;
 }
