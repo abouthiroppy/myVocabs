@@ -42,6 +42,8 @@ angular.module 'myVocabsApp'
     $scope.wordData = wordData
     socket.syncUpdates 'word', $scope.wordData
     markdown.outputText = marked wordData.description
+    if wordData.description is ''
+      $('#description-content').css 'display','none'
 
   selectCallback = (value, index)->
     selectTagText = $('span.selecter-selected').first().text()
