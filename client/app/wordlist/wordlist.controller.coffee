@@ -21,13 +21,17 @@ angular.module 'myVocabsApp'
 
   # getting current setting
   $http.get('/api/current').success (currentSetting) ->
-    currentTag = currentSetting[currentSetting.length-1].selectTag
-    convertSelectTag = currentTag
+    currentTag = ''
+    convertSelectTag = ''
     # init setting
     # current selecting tag
-    if currentTag == undefined
+    if currentSetting == undefined
       currentTag = allTagSelectText
       convertSelectTag = ''
+    else
+      currentTag = currentSetting[currentSetting.length-1].selectTag
+      convertSelectTag = currentTag
+
     # replace tag name
     # all tag
     if currentTag is ''
