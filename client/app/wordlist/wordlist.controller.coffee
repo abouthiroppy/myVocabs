@@ -21,22 +21,26 @@ angular.module 'myVocabsApp'
 
   # getting current setting
   $http.get('/api/current').success (currentSetting) ->
-
+    currentTag = currentSetting[currentSetting.length-1].selectTag
+    convertSelectTag = currentTag
     # init setting
     # current selecting tag
-    if currentSetting.selectTag == undefined
-      currentSetting.selectTag = allTagSelectText
-
+    if currentTag == undefined
+      currentTag = allTagSelectText
+      convertSelectTag = ''
     # replace tag name
     # all tag
-    if currentSetting.selectTag is ''
-      currentSetting.selectTag = allTagSelectText
+    if currentTag is ''
+      currentTag = allTagSelectText
+      convertSelectTag = ''
+
     # no tag
-    if currentSetting.selectTag is '<none>'
-      currentSetting.selectTag = noTagSelectText
+    if currentTag is '<none>'
+      currentTag = noTagSelectText
+      convertSelectTag = '<none>'
 
     # getting wordlist
-    fetchWordList currentSetting.selectTag
+    fetchWordList convertSelectTag
 
     # getting tags
     $http.get('/api/tags').success (tagData) ->
@@ -51,7 +55,7 @@ angular.module 'myVocabsApp'
         $('.selecter').selecter
           mobile   : true
           callback : selectCallback
-          label    : currentSetting.selectTag
+          label    : currentTag
       , 0
 
   # getting wordData
@@ -75,6 +79,7 @@ angular.module 'myVocabsApp'
           $('.progress-bar-danger').css('width', (priorityCount['high'] / wordData.length) * 100 + '%')
         , 100
 
+      $scope.filter.tag = currentTag
       # socket.syncUpdates 'word', $scope.wordData
       $scope.tableParams = new ngTableParams(
         page    : 1
