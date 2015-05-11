@@ -3,12 +3,12 @@
 angular.module 'myVocabsApp'
 .controller 'WordlistCtrl', ($scope, $http, ngTableParams, $filter) ->
   $scope.wordData = []
-  $scope.filter   = 
+  $scope.filter   =
     word     : ''
     priority : ''
     tag      : ''
 
-  $scope.sort      = 
+  $scope.sort      =
     #word: ''  # asc and desc
     date: 'desc'
 
@@ -20,10 +20,16 @@ angular.module 'myVocabsApp'
     checkboxClass : 'icheckbox_flat'
     radioClass    : 'iradio_flat'
 
+  # getting current setting
+  $http.get('/api/current').success (currentSetting) ->
+    console.log currentSetting
+    # current selecting tag
+    
+
   # getting tags
   $http.get('/api/tags').success (tagData) ->
     $scope.tagData = []
-    $scope.tagData.push 
+    $scope.tagData.push
       name  : noSelectTagText
       value : noSelectTagText
     $scope.tagData = $scope.tagData.concat tagData
@@ -37,8 +43,8 @@ angular.module 'myVocabsApp'
   selectCallback = (value, index)->
     selectTagText = $('span.selecter-selected').first().text()
     # all tag
-    if selectTagText is allTagSelectText 
-      selectTagText = '' 
+    if selectTagText is allTagSelectText
+      selectTagText = ''
     # no tag
     if selectTagText is noSelectTagText
       selectTagText = '<none>'
@@ -56,7 +62,7 @@ angular.module 'myVocabsApp'
     $('.selecter-selected').click()
     Mousetrap.bind 'up', () ->
       $('.selecter-item[data-value=1]').focus()
-  
+
   # focus to search-bar
   Mousetrap.bindGlobal 'ctrl+f', () ->
     if $('#word-find').is(':focus')
@@ -84,7 +90,7 @@ angular.module 'myVocabsApp'
       $scope.sort.date = 'asc'
     if e.target.attributes[0].nodeValue is 'sort-ascending'
       delete $scope.sort.date if delete $scope.sort.date is undefined
-      $scope.sort.word = 'asc' 
+      $scope.sort.word = 'asc'
     if e.target.attributes[0].nodeValue is 'sort-descending'
       delete $scope.sort.date if delete $scope.sort.date is undefined
       $scope.sort.word = 'desc'
@@ -93,7 +99,7 @@ angular.module 'myVocabsApp'
   # select priority for finding
   $scope.findPriority = (priorityClass) ->
     if priorityClass is 'priority-none-color'
-      $scope.filter.priority = '' 
+      $scope.filter.priority = ''
     else
       $scope.filter.priority = priorityClass
 
@@ -108,7 +114,7 @@ angular.module 'myVocabsApp'
   $http.get('/api/words').success (wordData) ->
     $scope.wordData = wordData
     # calculate distribution of word priority
-    priorityCount = 
+    priorityCount =
       low    : 0
       middle : 0
       high   : 0
@@ -136,7 +142,7 @@ angular.module 'myVocabsApp'
         orderedData  = params.sorting() && $filter('orderBy')(filteredData, params.orderBy()) || wordData;
         $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count())
         params.total orderedData.length
-        $defer.resolve $scope.users 
+        $defer.resolve $scope.users
     )
 
   $scope.deleteWord = (word) ->
