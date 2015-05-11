@@ -25,7 +25,7 @@ angular.module 'myVocabsApp'
     convertSelectTag = ''
     # init setting
     # current selecting tag
-    if currentSetting == undefined
+    if currentSetting.length == 0
       currentTag = allTagSelectText
       convertSelectTag = ''
     else
