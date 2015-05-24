@@ -6,3 +6,4 @@ angular.module 'myVocabsApp'
   .when '/wordlist',
     templateUrl: 'app/wordlist/wordlist.html'
     controller: 'WordlistCtrl'
+	  authenticate: true

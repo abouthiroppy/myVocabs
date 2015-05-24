@@ -6,3 +6,4 @@ angular.module 'myVocabsApp'
   .when '/addword',
     templateUrl: 'app/addword/addword.html'
     controller: 'AddwordCtrl'
+	  authenticate: true
