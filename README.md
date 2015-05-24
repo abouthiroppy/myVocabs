@@ -3,7 +3,6 @@
 # Markdown-memo(for my own use)
 
 # """"Unfinished""""
-# UI is tekio~~~(><)
 
 ## Install and Setting
 
